@@ -5,7 +5,7 @@
 //  Created by Christian Treffs on 04.11.17.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 	import Darwin.C.stdlib
 #else
 	// TODO: support linux and other platforms
@@ -19,13 +19,16 @@ public struct UUID {
 		assert(bytes.count == UUID.count, "An UUID must have a count of exactly \(UUID.count).")
 		self.bytes = bytes
 	}
+    
 	public init() {
 		self.init(UUID.generateUUID())
 	}
-	public init(_ bytes: [UInt8]) {
+	
+    public init(_ bytes: [UInt8]) {
 		self.init(ContiguousArray(bytes))
 	}
-	public init?(uuidString: String) {
+	
+    public init?(uuidString: String) {
 		guard uuidString.count == 2*UUID.count+4 else {
 			// "An UUID string must have a count of exactly 36."
 			return nil

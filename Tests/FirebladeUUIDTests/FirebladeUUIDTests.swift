@@ -1,9 +1,13 @@
 import XCTest
-@testable import FirebladeUUID
+import FirebladeUUID
 
 class FirebladeUUIDTests: XCTestCase {
     func testExample() {
-
+        
+        let uuid = FirebladeUUID.UUID()
+        
+        XCTAssertNotNil(uuid)
+        
     }
 
     static var allTests = [
