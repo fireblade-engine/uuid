@@ -5,12 +5,6 @@
 //  Created by Christian Treffs on 04.11.17.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-import Darwin.C.stdlib
-#else
-import Glibc
-#endif
-
 /// A RFC4122 compliant Universally Unique IDentifier (UUID).
 ///
 /// <https://tools.ietf.org/html/rfc4122>
@@ -54,10 +48,11 @@ public struct UUID {
     }
 
     private static func generateUUID() -> ContiguousArray<UInt8> {
-        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
-        uuid.withUnsafeMutableBufferPointer { (uuidPtr: inout UnsafeMutableBufferPointer<UInt8>) -> Void in
-            // TODO: use /dev/urandom
-            arc4random_buf(uuidPtr.baseAddress, UUID.count) // TODO: linux
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(unsafeUninitializedCapacity: UUID.count) { uuidPtr, written in
+            for i in 0..<UUID.count {
+                uuidPtr[i] = UInt8.random(in: UInt8.min...UInt8.max)
+            }
+            written = UUID.count
         }
         makeRFC4122compliant(uuid: &uuid)
         return uuid
