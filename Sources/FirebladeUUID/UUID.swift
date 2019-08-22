@@ -29,14 +29,14 @@ public struct UUID {
     }
 
     public init?(uuidString: String) {
-        guard uuidString.count == 2*UUID.count+4 else {
+        guard uuidString.count == 2 * UUID.count + 4 else {
             // "An UUID string must have a count of exactly 36."
             return nil
         }
 
         var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
         let contiguousString: String = uuidString.split(separator: "-").joined()
-        guard contiguousString.count == 2*UUID.count else {
+        guard contiguousString.count == 2 * UUID.count else {
             // An UUID string must have exactly 4 separators
             return nil
         }
@@ -45,7 +45,7 @@ public struct UUID {
             let startIdx: String.Index = endIdx
             endIdx = contiguousString.index(endIdx, offsetBy: 2)
             let substring: Substring = contiguousString[startIdx..<endIdx]  // take 2 characters as one byte
-            guard let byte: UInt8 = UInt8(substring, radix: UUID.count) else {
+            guard let byte = UInt8(substring, radix: UUID.count) else {
                 return nil
             }
             uuid[index] = byte
@@ -69,7 +69,7 @@ public struct UUID {
     }
 
     @inlinable public var uuidString: String {
-        var out: String = String()
+        var out = String()
         out.reserveCapacity(UUID.count)
         let separatorLayout: [Int] = [0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
         let separator: String = "-"
@@ -79,6 +79,7 @@ public struct UUID {
             switch char.count {
             case 2:
                 out.append(char)
+
             default:
                 out.append("0" + char)
             }
@@ -124,7 +125,7 @@ extension UUID: Hashable {
 }
 
 extension UUID: CustomStringConvertible {
-    public var description: String { return uuidString	}
+    public var description: String { return uuidString }
 }
 
 extension UUID: CustomDebugStringConvertible {
