@@ -8,13 +8,13 @@ extension FirebladeUUIDTests {
     static let __allTests__FirebladeUUIDTests = [
         ("testInit", testInit),
         ("testString", testString),
-        ("testUniqueness", testUniqueness),
+        ("testUniqueness", testUniqueness)
     ]
 }
 
 public func __allTests() -> [XCTestCaseEntry] {
     return [
-        testCase(FirebladeUUIDTests.__allTests__FirebladeUUIDTests),
+        testCase(FirebladeUUIDTests.__allTests__FirebladeUUIDTests)
     ]
 }
 #endif

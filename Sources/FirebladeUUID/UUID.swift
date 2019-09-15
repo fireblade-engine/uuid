@@ -49,17 +49,17 @@ public struct UUID {
 
     private static func generateUUID() -> ContiguousArray<UInt8> {
         #if swift(>=5.1)
-            var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(unsafeUninitializedCapacity: UUID.count) { uuidPtr, written in
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(unsafeUninitializedCapacity: UUID.count) { uuidPtr, written in
             for i in 0..<UUID.count {
                 uuidPtr[i] = UInt8.random(in: UInt8.min...UInt8.max)
             }
             written = UUID.count
-            }
+        }
         #else
-            var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
-            for i in 0..<UUID.count {
-                uuid[i] = UInt8.random(in: UInt8.min...UInt8.max)
-            }
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
+        for i in 0..<UUID.count {
+            uuid[i] = UInt8.random(in: UInt8.min...UInt8.max)
+        }
 
         #endif
         makeRFC4122compliant(uuid: &uuid)
