@@ -7,7 +7,7 @@ import func XCTest.XCTAssertNil
 
 import FirebladeUUID
 
-class FirebladeUUIDTests: XCTestCase {
+internal class FirebladeUUIDTests: XCTestCase {
     func testInit() {
         let uuid = UUID()
         XCTAssertNotNil(uuid)
