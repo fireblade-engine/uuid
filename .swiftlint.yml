@@ -2,6 +2,9 @@
 included:
   - Sources
   - Tests
+excluded:
+  - Tests/LinuxMain.swift
+  - Tests/FirebladeUUIDTests/XCTestManifests.swift
 identifier_name:
   excluded:
     - id
