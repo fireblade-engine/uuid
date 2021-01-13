@@ -4,9 +4,9 @@ import PackageDescription
 
 let swiftSettings: [SwiftSetting]?
 #if canImport(Foundation)
-swiftSettings = [.define("USE_FOUNDATION_UUID")]
-#else
 swiftSettings = nil
+#else
+swiftSettings = [.define("USE_FRB_UUID")]
 #endif
 
 let package = Package(
