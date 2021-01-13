@@ -1,6 +1,13 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 
 import PackageDescription
+
+let swiftSettings: [SwiftSetting]?
+#if canImport(Foundation)
+swiftSettings = [.define("USE_FOUNDATION_UUID")]
+#else
+swiftSettings = nil
+#endif
 
 let package = Package(
     name: "FirebladeUUID",
@@ -12,9 +19,10 @@ let package = Package(
     targets: [
         .target(
             name: "FirebladeUUID",
-            dependencies: []),
+            swiftSettings: swiftSettings),
         .testTarget(
             name: "FirebladeUUIDTests",
             dependencies: ["FirebladeUUID"])
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

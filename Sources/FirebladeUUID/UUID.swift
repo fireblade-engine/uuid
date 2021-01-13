@@ -1,5 +1,5 @@
 //
-//  UUID.swift
+//  FRB_UUID.swift
 //  FirebladeECSPackageDescription
 //
 //  Created by Christian Treffs on 04.11.17.
@@ -8,38 +8,38 @@
 /// A RFC4122 compliant Universally Unique IDentifier (UUID).
 ///
 /// <https://tools.ietf.org/html/rfc4122>
-public struct UUID {
+public struct FRB_UUID {
     public static let count: Int = 16 // https://tools.ietf.org/html/rfc4122#section-4.1
 
     @usableFromInline let bytes: ContiguousArray<UInt8>
 
     public init(_ bytes: ContiguousArray<UInt8>) {
-        precondition(bytes.count == UUID.count, "An UUID must have a count of exactly \(UUID.count).")
+        precondition(bytes.count == FRB_UUID.count, "A UUID must have a count of exactly \(FRB_UUID.count).")
         self.bytes = bytes
     }
 
     public init() {
-        self.init(UUID.generateUUID())
+        self.init(FRB_UUID.generateUUID())
     }
 
     public init?(uuidString: String) {
-        guard uuidString.count == 2 * UUID.count + 4 else {
             // "An UUID string must have a count of exactly 36."
+        guard uuidString.count == 2 * FRB_UUID.count + 4 else {
             return nil
         }
 
-        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: FRB_UUID.count)
         let contiguousString: String = uuidString.split(separator: "-").joined()
-        guard contiguousString.count == 2 * UUID.count else {
             // An UUID string must have exactly 4 separators
+        guard contiguousString.count == 2 * FRB_UUID.count else {
             return nil
         }
         var endIdx: String.Index = contiguousString.startIndex
-        for index in 0..<UUID.count {
+        for index in 0..<FRB_UUID.count {
             let startIdx: String.Index = endIdx
             endIdx = contiguousString.index(endIdx, offsetBy: 2)
             let substring: Substring = contiguousString[startIdx..<endIdx]  // take 2 characters as one byte
-            guard let byte = UInt8(substring, radix: UUID.count) else {
+            guard let byte = UInt8(substring, radix: FRB_UUID.count) else {
                 return nil
             }
             uuid[index] = byte
@@ -49,15 +49,15 @@ public struct UUID {
 
     private static func generateUUID() -> ContiguousArray<UInt8> {
         #if swift(>=5.1)
-        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(unsafeUninitializedCapacity: UUID.count) { uuidPtr, written in
-            for offset in 0..<UUID.count {
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(unsafeUninitializedCapacity: FRB_UUID.count) { uuidPtr, written in
+            for offset in 0..<FRB_UUID.count {
                 uuidPtr[offset] = UInt8.random(in: UInt8.min...UInt8.max)
             }
-            written = UUID.count
+            written = FRB_UUID.count
         }
         #else
-        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: UUID.count)
-        for offset in 0..<UUID.count {
+        var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: FRB_UUID.count)
+        for offset in 0..<FRB_UUID.count {
             uuid[offset] = UInt8.random(in: UInt8.min...UInt8.max)
         }
 
@@ -73,12 +73,12 @@ public struct UUID {
 
     @inlinable public var uuidString: String {
         var out = String()
-        out.reserveCapacity(UUID.count)
+        out.reserveCapacity(FRB_UUID.count)
         let separatorLayout: [Int] = [0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
         let separator: String = "-"
         var idx: Int = 0
         for byte in bytes {
-            let char = String(byte, radix: UUID.count, uppercase: true)
+            let char = String(byte, radix: FRB_UUID.count, uppercase: true)
             switch char.count {
             case 2:
                 out.append(char)
@@ -92,7 +92,7 @@ public struct UUID {
             idx += 1
         }
 
-        precondition(idx == UUID.count)
+        precondition(idx == FRB_UUID.count)
         precondition(out.count == 36)
         return out
     }
@@ -102,7 +102,7 @@ public struct UUID {
     @inlinable var oatHash: Int {
         var hash: Int = 0
 
-        for index: Int in 0..<UUID.count {
+        for index: Int in 0..<FRB_UUID.count {
             hash = hash &+ numericCast(bytes[index])
             hash = hash &+ (hash << 10)
             hash ^= (hash >> 6)
@@ -115,22 +115,22 @@ public struct UUID {
     }
 }
 
-extension UUID: Equatable {
-    public static func == (lhs: UUID, rhs: UUID) -> Bool {
+extension FRB_UUID: Equatable {
+    public static func == (lhs: FRB_UUID, rhs: FRB_UUID) -> Bool {
         lhs.bytes == rhs.bytes
     }
 }
 
-extension UUID: Hashable {
+extension FRB_UUID: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(oatHash)
     }
 }
 
-extension UUID: CustomStringConvertible {
+extension FRB_UUID: CustomStringConvertible {
     public var description: String { uuidString }
 }
 
-extension UUID: CustomDebugStringConvertible {
+extension FRB_UUID: CustomDebugStringConvertible {
     public var debugDescription: String { uuidString }
 }
