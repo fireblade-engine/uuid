@@ -67,7 +67,7 @@ See also the list of [contributors](https://github.com/fireblade-engine/uuid/con
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 
-### ♻ Alternatives
+## ♻ Alternatives
 
 - [alexdrone/PushID](https://github.com/alexdrone/PushID)
 - [coderyi/YiUUID](https://github.com/coderyi/YiUUID)
