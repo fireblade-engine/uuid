@@ -117,7 +117,7 @@ public struct UUID {
 
 extension UUID: Equatable {
     public static func == (lhs: UUID, rhs: UUID) -> Bool {
-        return lhs.bytes == rhs.bytes
+        lhs.bytes == rhs.bytes
     }
 }
 
@@ -128,9 +128,9 @@ extension UUID: Hashable {
 }
 
 extension UUID: CustomStringConvertible {
-    public var description: String { return uuidString }
+    public var description: String { uuidString }
 }
 
 extension UUID: CustomDebugStringConvertible {
-    public var debugDescription: String { return uuidString }
+    public var debugDescription: String { uuidString }
 }
