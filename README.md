@@ -57,17 +57,15 @@ print(uuid.uuidString)
 
 ```
 
-## 🏷️ Versioning
-
-We adhere to [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](tags).
-
 ## ✍️ Authors
 
-* [Christian Treffs](https://github.com/ctreffs)
+This project is currently maintained by [Christian Treffs](https://github.com/ctreffs).   
+See also the list of [contributors](https://github.com/fireblade-engine/uuid/contributors) who participated in this project.
 
 ## 🔏 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
 
 ### ♻ Alternatives
 
