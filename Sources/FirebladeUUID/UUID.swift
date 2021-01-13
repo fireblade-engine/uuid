@@ -23,14 +23,14 @@ public struct FRB_UUID {
     }
 
     public init?(uuidString: String) {
-            // "An UUID string must have a count of exactly 36."
+        // "An UUID string must have a count of exactly 36."
         guard uuidString.count == 2 * FRB_UUID.count + 4 else {
             return nil
         }
 
         var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: FRB_UUID.count)
         let contiguousString: String = uuidString.split(separator: "-").joined()
-            // An UUID string must have exactly 4 separators
+        // An UUID string must have exactly 4 separators
         guard contiguousString.count == 2 * FRB_UUID.count else {
             return nil
         }
