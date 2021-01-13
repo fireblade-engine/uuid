@@ -35,7 +35,7 @@ import PackageDescription
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-    .package(url: "https://github.com/fireblade-engine/uuid.git", from: "1.0.0")
+    .package(url: "https://github.com/fireblade-engine/uuid.git", from: "1.1.0")
     ],
     targets: [
         .target(
