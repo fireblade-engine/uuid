@@ -5,7 +5,7 @@
 [![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
-This is a pure **Swift** implementation of [Universally Unique Identifier (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier); it's **dependency free**, **lightweight**, **fast** and **easy to use**, and complies with [RFC4122](https://tools.ietf.org/html/rfc4122).
+This is a **Swift** implementation of [Universally Unique Identifier (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier); it's **lightweight**, **fast** and **easy to use**, and complies with [RFC4122](https://tools.ietf.org/html/rfc4122).
 
 The module is developed and maintained as part of the [Fireblade Game Engine](https://github.com/fireblade-engine) project.
 
