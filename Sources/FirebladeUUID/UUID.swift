@@ -5,12 +5,11 @@
 //  Created by Christian Treffs on 04.11.17.
 //
 
+#if USE_FRB_UUID
 /// A RFC4122 compliant Universally Unique IDentifier (UUID).
 ///
 /// <https://tools.ietf.org/html/rfc4122>
 public struct FRB_UUID {
-    public static let count: Int = 16 // https://tools.ietf.org/html/rfc4122#section-4.1
-
     @usableFromInline let bytes: ContiguousArray<UInt8>
 
     public init(_ bytes: ContiguousArray<UInt8>) {
@@ -18,19 +17,29 @@ public struct FRB_UUID {
         self.bytes = bytes
     }
 
+    public init(uuid: UUID_t) {
+        let bytes = withUnsafePointer(to: uuid) { ptr -> ContiguousArray<UInt8> in
+            let start = UnsafeRawPointer(ptr).assumingMemoryBound(to: UInt8.self)
+            let count = MemoryLayout<UUID_t>.stride / MemoryLayout<UInt8>.stride
+            let buffer = UnsafeBufferPointer<UInt8>(start: start, count: count)
+            return ContiguousArray<UInt8>(buffer)
+        }
+        self.init(bytes)
+    }
+
     public init() {
         self.init(FRB_UUID.generateUUID())
     }
 
     public init?(uuidString: String) {
-            // "An UUID string must have a count of exactly 36."
+        // "An UUID string must have a count of exactly 36."
         guard uuidString.count == 2 * FRB_UUID.count + 4 else {
             return nil
         }
 
         var uuid: ContiguousArray<UInt8> = ContiguousArray<UInt8>(repeating: 0, count: FRB_UUID.count)
         let contiguousString: String = uuidString.split(separator: "-").joined()
-            // An UUID string must have exactly 4 separators
+        // An UUID string must have exactly 4 separators
         guard contiguousString.count == 2 * FRB_UUID.count else {
             return nil
         }
@@ -67,7 +76,7 @@ public struct FRB_UUID {
     }
 
     private static func makeRFC4122compliant(uuid: inout ContiguousArray<UInt8>) {
-        uuid[6] = (uuid[6] & 0x0F) | 0x40 // version https://tools.ietf.org/html/rfc4122#section-4.1.3
+        uuid[6] = (uuid[6] & 0x0f) | 0x40 // version https://tools.ietf.org/html/rfc4122#section-4.1.3
         uuid[8] = (uuid[8] & 0x3f) | 0x80 // variant https://tools.ietf.org/html/rfc4122#section-4.1.1
     }
 
@@ -113,6 +122,25 @@ public struct FRB_UUID {
         hash = hash &+ (hash << 15)
         return hash
     }
+
+    public var uuid: UUID_t {
+        UUID_t(bytes[0],
+               bytes[1],
+               bytes[2],
+               bytes[3],
+               bytes[4],
+               bytes[5],
+               bytes[6],
+               bytes[7],
+               bytes[8],
+               bytes[9],
+               bytes[10],
+               bytes[11],
+               bytes[12],
+               bytes[13],
+               bytes[14],
+               bytes[15])
+    }
 }
 
 extension FRB_UUID: Equatable {
@@ -134,3 +162,5 @@ extension FRB_UUID: CustomStringConvertible {
 extension FRB_UUID: CustomDebugStringConvertible {
     public var debugDescription: String { uuidString }
 }
+
+#endif

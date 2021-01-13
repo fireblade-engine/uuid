@@ -5,7 +5,7 @@
 [![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20linux%20-brightgreen.svg)](#)
 
-This is a pure **Swift** implementation of [Universally Unique Identifier (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier); it's **dependency free**, **lightweight**, **fast** and **easy to use**, and complies with [RFC4122](https://tools.ietf.org/html/rfc4122).
+This is a **Swift** implementation of [Universally Unique Identifier (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier); it's **lightweight**, **fast** and **easy to use**, and complies with [RFC4122](https://tools.ietf.org/html/rfc4122).
 
 The module is developed and maintained as part of the [Fireblade Game Engine](https://github.com/fireblade-engine) project.
 
@@ -67,19 +67,19 @@ See also the list of [contributors](https://github.com/fireblade-engine/uuid/con
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 
-### ♻ Alternatives
+## ♻ Alternatives
 
 - [alexdrone/PushID](https://github.com/alexdrone/PushID)
 - [coderyi/YiUUID](https://github.com/coderyi/YiUUID)
 - [DavidSkrundz/UUID](https://github.com/DavidSkrundz/UUID)
-- [drichardson/SwiftyUUID](https://github.com/drichardson/)SwiftyUUID
+- [drichardson/SwiftyUUID](https://github.com/drichardson/SwiftyUUID)
 - [dtop/SwiftUUIDv5](https://github.com/dtop/SwiftUUIDv5)
-- [extras-uuid](https://github.com/swift-extras/)swift-extras-uuid
-- [ocworld/UUIDStringStyle](https://github.com/ocworld/)UUIDStringStyle
+- [swift-extras/swift-extras-uuid](https://github.com/swift-extras/swift-extras-uuid)
+- [ocworld/UUIDStringStyle](https://github.com/ocworld/UUIDStringStyle)
 - [PureSwift/CUUID](https://github.com/PureSwift/CUUID)
 - [Swift-UUID](https://github.com/x43x61x69/Swift-UUID)
 - [uuid-kit](https://github.com/baarde/uuid-kit)
 - [uuid-swift](https://github.com/jrikhof/short-uuid-swift)
-- [UUIDv3-UUIDv5](https://github.com/nuekodory/)Swift-UUIDv3-UUIDv5
+- [nuekodory/Swift-UUIDv3-UUIDv5](https://github.com/nuekodory/Swift-UUIDv3-UUIDv5)
 - [WeZZard/UUID](https://github.com/WeZZard/UUID)
 - [ZewoGraveyard/UUID](https://github.com/ZewoGraveyard/UUID)
