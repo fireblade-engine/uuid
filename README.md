@@ -68,3 +68,20 @@ We adhere to [SemVer](https://semver.org/) for versioning. For the versions avai
 ## 🔏 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+### ♻ Alternatives
+
+- [alexdrone/PushID](https://github.com/alexdrone/PushID)
+- [coderyi/YiUUID](https://github.com/coderyi/YiUUID)
+- [DavidSkrundz/UUID](https://github.com/DavidSkrundz/UUID)
+- [drichardson/SwiftyUUID](https://github.com/drichardson/)SwiftyUUID
+- [dtop/SwiftUUIDv5](https://github.com/dtop/SwiftUUIDv5)
+- [extras-uuid](https://github.com/swift-extras/)swift-extras-uuid
+- [ocworld/UUIDStringStyle](https://github.com/ocworld/)UUIDStringStyle
+- [PureSwift/CUUID](https://github.com/PureSwift/CUUID)
+- [Swift-UUID](https://github.com/x43x61x69/Swift-UUID)
+- [uuid-kit](https://github.com/baarde/uuid-kit)
+- [uuid-swift](https://github.com/jrikhof/short-uuid-swift)
+- [UUIDv3-UUIDv5](https://github.com/nuekodory/)Swift-UUIDv3-UUIDv5
+- [WeZZard/UUID](https://github.com/WeZZard/UUID)
+- [ZewoGraveyard/UUID](https://github.com/ZewoGraveyard/UUID)
