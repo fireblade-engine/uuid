@@ -1,9 +1,8 @@
-lint:
-	swiftlint autocorrect --format
+SWIFT_PACKAGE_VERSION := $(shell swift package tools-version)
 
-genLinuxTests:
-	swift test --generate-linuxmain
-	swiftlint autocorrect --format --path Tests/
+lint-fix:
+	mint run swiftlint --fix --quiet
+	mint run swiftformat --quiet --swiftversion ${SWIFT_PACKAGE_VERSION} .
 
 test: genLinuxTests
 	swift test
@@ -18,16 +17,9 @@ clean:
 cleanArtifacts:
 	swift package clean
 
-genXcode:
-	swift package generate-xcodeproj --enable-code-coverage --skip-extra-files
-
 latest:
 	swift package update
 
 resolve:
 	swift package resolve
 
-genXcodeOpen: genXcode
-	open *.xcodeproj
-
-precommit: lint genLinuxTests
