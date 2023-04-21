@@ -1,9 +1,9 @@
-import class XCTest.XCTestCase
-import func XCTest.XCTAssertNotNil
 import func XCTest.XCTAssertEqual
-import func XCTest.XCTAssertTrue
 import func XCTest.XCTAssertFalse
 import func XCTest.XCTAssertNil
+import func XCTest.XCTAssertNotNil
+import func XCTest.XCTAssertTrue
+import class XCTest.XCTestCase
 
 import FirebladeUUID
 
@@ -15,7 +15,7 @@ internal class FirebladeUUIDTests: XCTestCase {
 
     func testUniqueness() {
         var set = Set<UUID>()
-        (0..<100_000).forEach { _ in
+        (0 ..< 100_000).forEach { _ in
             let (inserted, _) = set.insert(UUID())
             XCTAssertTrue(inserted)
         }

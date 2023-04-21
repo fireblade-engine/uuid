@@ -4,9 +4,9 @@ import PackageDescription
 
 let swiftSettings: [SwiftSetting]?
 #if canImport(Foundation)
-swiftSettings = nil
+    swiftSettings = nil
 #else
-swiftSettings = [.define("USE_FRB_UUID")]
+    swiftSettings = [.define("USE_FRB_UUID")]
 #endif
 
 let package = Package(
@@ -20,17 +20,20 @@ let package = Package(
     products: [
         .library(
             name: "FirebladeUUID",
-            targets: ["FirebladeUUID"])
+            targets: ["FirebladeUUID"]
+        ),
     ],
     dependencies: [.package(url: "https://github.com/apple/swift-crypto.git", from: "2.5.0")],
     targets: [
         .target(
             name: "FirebladeUUID",
             dependencies: [.product(name: "Crypto", package: "swift-crypto")],
-            swiftSettings: swiftSettings),
+            swiftSettings: swiftSettings
+        ),
         .testTarget(
             name: "FirebladeUUIDTests",
-            dependencies: ["FirebladeUUID"])
+            dependencies: ["FirebladeUUID"]
+        ),
     ],
     swiftLanguageVersions: [.v5]
 )
