@@ -22,7 +22,7 @@ let package = Package(
             name: "FirebladeUUID",
             targets: ["FirebladeUUID"])
     ],
-    dependencies: [.package(url: "https://github.com/apple/swift-crypto.git", from: "1.1.3")],
+    dependencies: [.package(url: "https://github.com/apple/swift-crypto.git", from: "2.5.0")],
     targets: [
         .target(
             name: "FirebladeUUID",
